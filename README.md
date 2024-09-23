@@ -1,5 +1,5 @@
 <div align="center">
-    <img width="128" src="rabbit_ngauserfilt/icons/jiandanfu-128" alt="logo"><br/>
+    <img width="128" src="jiandanimg_userfilt/icons/jiandanfu-128" alt="logo"><br/>
 
 # 煎蛋无聊图用户屏蔽
 </div>      
