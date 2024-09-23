@@ -1,0 +1,80 @@
+window.onload = function(){
+	document.getElementById("addButton_btn").addEventListener("click",addFilter);
+	document.getElementById("removeButton_btn").addEventListener("click",removeFilter);
+	
+	loadFilter();
+}
+
+function loadFilter(){
+	let filterUsersStr = localStorage.getItem('ngaFilterUsers');
+	if(null == filterUsersStr){
+		return;
+	}
+	let filterUsers = filterUsersStr.split(',');
+	for(let index in filterUsers){
+		let temp = filterUsers[index];
+		if(temp != null && temp.length>0){
+			addOpen(temp);	
+		}
+	}
+	
+}
+
+function addFilter(){	
+	let newFilter = document.getElementById("newFilter").value;
+	if(newFilter == null) return;
+	newFilter = newFilter.trim();
+	if(newFilter.length <=0) return;
+	
+	addOpen(newFilter);
+	
+	let filterUsersStr = localStorage.getItem('ngaFilterUsers');
+	if(null == filterUsersStr){
+		filterUsersStr = "";
+	}
+	filterUsersStr += newFilter;
+	filterUsersStr += ",";
+	
+	localStorage.setItem('ngaFilterUsers',filterUsersStr);
+	
+	document.getElementById("newFilter").value = "";
+	
+	// 存储数据到 local 存储区域
+	//chrome.storage.local.set({ 'ngaFilterUsers': 'JohnDoe' }, function() {
+	//	console.log('Data has been set.');
+	//});
+
+	// 从 local 存储区域获取数据
+	//chrome.storage.local.get(['ngaFilterUsers'], function(result) {
+	//  console.log('Value for ngaFilterUsers1 is ' + result.username);
+	//});
+}
+
+
+function removeFilter(){
+	let userFiltersBox = document.getElementById("userFiltersBox");
+	if(userFiltersBox.selectedIndex > -1){
+		let filterStr = "";
+		
+		for(var i=0;i<userFiltersBox.options.length;i++){
+			if(userFiltersBox.options[i].selected)
+			{
+				userFiltersBox.remove(i);
+				i-=1;
+			}else{
+				filterStr += userFiltersBox.options[i].value;
+				filterStr += ",";
+			}
+		}
+		
+		localStorage.setItem('ngaFilterUsers',filterStr);
+	}
+}
+
+function addOpen(item){
+	let newOption = document.createElement("option");
+	newOption.text = item;
+	newOption.value = item;
+	let userFiltersBox = document.getElementById("userFiltersBox");
+	userFiltersBox.appendChild(newOption);
+}
