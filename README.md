@@ -8,7 +8,7 @@
     随手拍页面也能生效
 
 ## 下载
-[下载页面](https://github.com/MikuNyanya/jiandanimg_userfilt/releases/tag/v1.0)
+[下载页面](https://github.com/MikuNyanya/jiandanimg_userfilt/releases/tag/v1.1) 
 
 ## 使用演示     
 **1.插件安装**
