@@ -28,7 +28,7 @@ function filtusers(){
 		return;
 	}
 	
-	let docs = document.getElementsByClassName("author");
+	let docs = document.getElementsByClassName("comment-meta");
 	let bClickEvent = 0;
 	for (let authorNode of docs) {
 		let uName = authorNode.children[0].innerHTML;
