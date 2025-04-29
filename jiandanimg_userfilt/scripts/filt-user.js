@@ -41,14 +41,12 @@ function filtusers(){
 				//console.log(uName+"开始执行屏蔽")
 				bClickEvent = 1;
 				authorNode.setAttribute("rabbit","filt")
-				let textNode = authorNode.nextElementSibling;
-				console.log(textNode.children[1].className);
-				if(textNode.children[1].className == "bad_content"){
-					textNode.children[1].remove();
-				}
-				textNode.children[1].style.display="none";		
-				textNode.children[0].insertAdjacentHTML("afterend", "<p class='filt_content' style='color:#FFA500'>已按照插件规则隐藏该内容.  <a href='javascript:;' class='rabbit_view_filt'>[手贱一回]</a></p>")
-				
+				//let textNode = authorNode.nextElementSibling;
+				let textNode = (authorNode.parentNode.getElementsByClassName("comment-content"))[0];
+				textNode.style.display="none";
+				authorNode.insertAdjacentHTML("afterend", "<p class='filt_content' style='color:#FFA500;padding:5px 10px;'>已按照插件规则隐藏该内容.  <a href='javascript:;' class='rabbit_view_filt'>[手贱一回]</a></p>")
+				//textNode.children[1].style.display="none";
+				//textNode.children[0].insertAdjacentHTML("afterend", "<p class='filt_content' style='color:#FFA500'>已按照插件规则隐藏该内容.  <a href='javascript:;' class='rabbit_view_filt'>[手贱一回]</a></p>")
 			}
 		}
 	}
@@ -62,9 +60,9 @@ function filtusers(){
 }
 function rabbitViewFiltClick(){
 	    let viewFiltNode = event.currentTarget;
-		let imgNode = viewFiltNode.parentNode.nextElementSibling;
+		let imgNode = (viewFiltNode.parentNode.parentNode.getElementsByClassName("comment-content"))[0];
 		if (this.innerHTML == '[手贱一回]' || this.innerHTML == '[再手贱一回]') {
-			imgNode.style.display="inline";
+			imgNode.style.display="block";
 			this.innerHTML = '[真不该手贱]';
 		} else {
 			imgNode.style.display="none";
